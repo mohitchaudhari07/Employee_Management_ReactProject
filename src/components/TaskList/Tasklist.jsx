@@ -1,40 +1,39 @@
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/prop-types */
+import AcceptTask from "./AcceptTask"
+import CompleteTask from "./CompleteTask"
+import FailedTask from "./FailedTask"
+import NewTask from "./NewTask"
 
 
-const Tasklist = () => {
+const Tasklist = ({data}) => {
   return (
     <div id="tasklist" className="h-[53%] overflow-x-auto flex items-center justify-start gap-5 flex-nowrap mt-10 rounded-xl py-5 "> 
-      <div className="h-full flex-shrink-0 p-5 w-[400px] bg-lightblue rounded-xl">
-        <div className="flex justify-between items-center">
-            <h3 className="bg-red-600 text-sm px-3 py-1 rounded">High</h3>
-            <h4 className="text-sm">20 feb 2024</h4>
-        </div>
-        <h2 className="mt-5 text-2xl font-semibold ">Make a youtube video</h2>
-        <p className="text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis distinctio sequi omnis, in id autem.</p>
-    </div>
-    <div className="h-full flex-shrink-0 p-5 w-[400px] bg-lightviolet rounded-xl">
-        <div className="flex justify-between items-center">
-            <h3 className="bg-red-600 text-sm px-3 py-1 rounded">High</h3>
-            <h4 className="text-sm">20 feb 2024</h4>
-        </div>
-        <h2 className="mt-5 text-2xl font-semibold ">Make a youtube video</h2>
-        <p className="text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis distinctio sequi omnis, in id autem.</p>
-    </div>
-    <div className="h-full flex-shrink-0 p-5 w-[400px] bg-gray-400 rounded-xl">
-        <div className="flex justify-between items-center">
-            <h3 className="bg-red-600 text-sm px-3 py-1 rounded">High</h3>
-            <h4 className="text-sm">20 feb 2024</h4>
-        </div>
-        <h2 className="mt-5 text-2xl font-semibold ">Make a youtube video</h2>
-        <p className="text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis distinctio sequi omnis, in id autem.</p>
-    </div>
-    <div className="h-full flex-shrink-0 p-5 w-[400px] bg-red-300 rounded-xl">
-        <div className="flex justify-between items-center">
-            <h3 className="bg-red-600 text-sm px-3 py-1 rounded">High</h3>
-            <h4 className="text-sm">20 feb 2024</h4>
-        </div>
-        <h2 className="mt-5 text-2xl font-semibold ">Make a youtube video</h2>
-        <p className="text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis distinctio sequi omnis, in id autem.</p>
-    </div>
+            {data.tasks.map((elem ,idx)=>{
+                if(elem.newTask){
+                    return <NewTask key={idx} data={elem}/>
+                }
+                
+                if(elem.completed){
+                    return <CompleteTask key={idx} data={elem}/>
+                }
+                else if(elem.active){
+                    return  <AcceptTask key={idx} data={elem}/>
+                    
+                }
+                
+                if(elem.failed){
+                    return <FailedTask key={idx} data={elem}/>
+                }
+            })}
+        
+
+
+
+      
+       
+      
+      
       
     </div>
   )
